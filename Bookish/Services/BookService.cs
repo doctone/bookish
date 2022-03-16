@@ -1,5 +1,6 @@
 using bookish;
 using bookish.Models;
+using bookish.Models.Requests;
 using bookish.Repositories;
 
 namespace bookish.Services
@@ -8,6 +9,7 @@ namespace bookish.Services
     public interface IBookService
     {
         public List<Book> GetAllBooks();
+        // Book Create(CreateBookRequest newBook);
     }
     public class BookService : IBookService
     {
@@ -36,7 +38,5 @@ namespace bookish.Services
             }
             return books;
         }
-
-
     }
 }

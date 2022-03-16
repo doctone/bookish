@@ -1,4 +1,5 @@
 using bookish.Models.Database;
+using bookish.Models.Requests;
 using Microsoft.EntityFrameworkCore;
 
 namespace bookish.Repositories
@@ -6,6 +7,8 @@ namespace bookish.Repositories
     public interface IBookRepo
     {
         public List<BookDbModel> GetAllBooks();
+
+        public BookDbModel Create(CreateBookRequest newBook);
     }
 
     public class BookRepo : IBookRepo
@@ -14,7 +17,7 @@ namespace bookish.Repositories
         public List<BookDbModel> GetAllBooks()
         {
             return _context.Books.Include(b => b.Author).ToList();
-            {
+            
                 /* new BookDbModel
                 {
                     Id = 1,
@@ -35,7 +38,22 @@ namespace bookish.Repositories
                     ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/The_Great_Gatsby_Cover_1925_Retouched.jpg/440px-The_Great_Gatsby_Cover_1925_Retouched.jpg",
                     AuthorId = 2
                 } */
-            };
+        }
+
+        public BookDbModel Create(CreateBookRequest newBook)
+        {
+            var insertResult = _context.Add(new BookDbModel
+            {
+                Title = newBook.Title,
+                Author = new AuthorDbModel
+                    {
+                        Name = newBook.Author
+                    },
+                ImageUrl = newBook.ImageUrl,
+                YearPublished = newBook.DatePublished,
+            });
+            _context.SaveChanges();
+            return insertResult.Entity;
         }
     }
 }

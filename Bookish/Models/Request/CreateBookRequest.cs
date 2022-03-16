@@ -15,7 +15,7 @@ namespace bookish.Models.Requests
 
         public string ImageUrl { get; set; }
 
-        public DateTime DatePublished { get; set; }
+        public int DatePublished { get; set; }
 
     }
 }
