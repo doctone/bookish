@@ -12,11 +12,14 @@ namespace bookish.Models.Response
             {
                 _book = book;
             }
+        
+        public int Id => _book.Id;
         public string Title => _book.Title;
         public int YearPublished => _book.YearPublished;
-        public string Author => _book.Author;
         public string ImageUrl => _book.ImageUrl;
         public string Blurb => _book.Blurb;
+
+        public AuthorDbModel Author => _book.Author; 
 
     }
 }

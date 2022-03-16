@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using bookish.Models.Requests;
+using bookish.Models.Response;
 using bookish.Services;
 using bookish.Repositories;
 
@@ -24,6 +25,9 @@ namespace bookish.Controllers
     public IActionResult Create([FromBody] CreateBookRequest newBook)
         {
             var book = _books.Create(newBook);
+            var url = Url.Action("GetById", new { id = book.Id});
+            var BookResponse = new BookResponse(book);
+            return Created(url, BookResponse);
         }
     }
 
