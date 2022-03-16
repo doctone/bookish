@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using bookish.Models.Requests;
 using bookish.Services;
+using bookish.Repositories;
 
 namespace bookish.Controllers
 {
@@ -10,16 +11,20 @@ namespace bookish.Controllers
             private readonly ILogger<HomeController> _logger;
             private readonly IBookService _bookService;
 
-    public BookController(ILogger<HomeController> logger, IBookService bookService)
+            private readonly IBookRepo _books;
+
+    public BookController(ILogger<HomeController> logger, IBookService bookService, IBookRepo books)
         {
             _logger = logger;
             _bookService = bookService;
+            _books = books;
         }
-    }
 
     [HttpPost("create")]
     public IActionResult Create([FromBody] CreateBookRequest newBook)
-    {
-
+        {
+            var book = _books.Create(newBook);
+        }
     }
+
 }
