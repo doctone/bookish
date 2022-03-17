@@ -25,9 +25,7 @@ namespace bookish.Controllers
     public IActionResult Create([FromBody] CreateBookRequest newBook)
         {
             var book = _books.Create(newBook);
-            var url = Url.Action("GetById", new { id = book.Id});
-            var BookResponse = new BookResponse(book);
-            return Created(url, BookResponse);
+            return Created("/Home/Booklist", book);
         }
     }
 

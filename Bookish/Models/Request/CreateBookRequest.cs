@@ -7,13 +7,13 @@ namespace bookish.Models.Requests
         [Required]
         [StringLength(140)]
 
-        public string Title { get; set; }
+        public string? Title { get; set; }
 
         [Required]
         [StringLength(60)]
-        public string Author {get; set; }
+        public string? Author {get; set; }
 
-        public string ImageUrl { get; set; }
+        public string? ImageUrl { get; set; }
 
         public int DatePublished { get; set; }
 
