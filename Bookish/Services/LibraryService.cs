@@ -19,9 +19,9 @@ namespace bookish.Services
                 library.Add(
                     new Library{
                         Id = dbBookCopy.Id,
-                        Isbn = dbBookCopy.Book.Isbn,
-                        Title = dbBookCopy.Book.Title,
-                        Author = dbBookCopy.Book.Author.Name,
+                        Isbn = dbBookCopy.Book?.Isbn,
+                        Title = dbBookCopy.Book?.Title,
+                        Author = dbBookCopy.Book?.Author?.Name,
                     }
                 );
             }
