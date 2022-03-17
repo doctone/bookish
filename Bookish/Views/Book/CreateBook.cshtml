@@ -1,0 +1,22 @@
+@model bookish.Models.Requests.CreateBookRequest;
+
+
+<h1>Create New Book Entry</h1>
+
+
+<form asp-action="Create" asp-controller="book">
+    <label asp-for="Title">
+        <input asp-for="Title" placeholder="Title" />
+    </label>
+    <label asp-for="Author">
+        <input asp-for="Author" placeholder="Author" />
+    </label>
+    <label asp-for="ImageUrl">
+        <input asp-for="ImageUrl" placeholder="Image Url" />
+    </label>
+    <label asp-for="DatePublished">
+        <input asp-for="DatePublished" placeholder="Date Published" />
+    </label>
+    <input type="submit">
+</form>
+

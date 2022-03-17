@@ -21,11 +21,16 @@ namespace bookish.Controllers
             _books = books;
         }
 
-    [HttpPost("create")]
-    public IActionResult Create([FromBody] CreateBookRequest newBook)
+    [HttpPost]
+    public IActionResult Create([FromForm] CreateBookRequest newBook)
         {
             var book = _books.Create(newBook);
-            return Created("/Home/Booklist", book);
+            return Created("../Home/Booklist", book);
+        }
+
+       public IActionResult CreateBook()
+        {
+            return View();
         }
     }
 
